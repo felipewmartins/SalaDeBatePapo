@@ -6,9 +6,11 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 public class UsuarioBatePapo extends Thread {
     
-	// Controla a recepção de mensagens do usuario
+	// Controla a recepï¿½ï¿½o de mensagens do usuario
     private Socket conexao;
     // Construtor que recebe o socket do usuario
     public UsuarioBatePapo(Socket socket) {
@@ -20,12 +22,13 @@ public class UsuarioBatePapo extends Thread {
         try {
             //Instancia do atributo conexao do tipo Socket;
             //Conecta o IP do Servidor e a Porta;
-            Socket socket = new Socket("127.0.0.1", 5555);
+            String ip = JOptionPane.showInputDialog("Digite o ip do servidor Ex: 127.0.0.1");
+            Socket socket = new Socket(ip, 5555);
             //Instancia do atributo saida, obtem os objetos que permitem;
-            //Controlar o fluxo de comunicação;
+            //Controlar o fluxo de comunicaï¿½ï¿½o;
             PrintStream saida = new PrintStream(socket.getOutputStream());
             BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Digite seu nome de usuário: ");
+            System.out.print("Digite seu nome de usuï¿½rio: ");
             String meuNome = teclado.readLine();
             //Envia o nome digitado para o servidor;
             saida.println(meuNome.toUpperCase());
@@ -36,7 +39,7 @@ public class UsuarioBatePapo extends Thread {
             String msg;
             while (true)
             {
-                //Cria linha para digitação da mensagem e a armazena na variavel msg;
+                //Cria linha para digitaï¿½ï¿½o da mensagem e a armazena na variavel msg;
                 System.out.print("Mensagem > ");
                 msg = teclado.readLine();
                 //Envia a mensagem para o servidor;
@@ -46,11 +49,11 @@ public class UsuarioBatePapo extends Thread {
             System.out.println("Falha na Conexao... .. ." + " IOException: " + e);
         }
     }
-    //Execução da thread;
+    //Execuï¿½ï¿½o da thread;
     public void run()
     {
         try {
-            //Recebe mensagens de outro cliente através do servidor;
+            //Recebe mensagens de outro cliente atravï¿½s do servidor;
             BufferedReader entrada =
                 new BufferedReader(new InputStreamReader(this.conexao.getInputStream()));
             //Cria variavel de mensagem;
@@ -62,7 +65,7 @@ public class UsuarioBatePapo extends Thread {
                 //Se a mensagem contiver dados, passa pelo if;
                 //Caso contrario cai no break e encerra a conexao;
                 if (msg == null) {
-                    System.out.println("Conexão encerrada!");
+                    System.out.println("Conexï¿½o encerrada!");
                     System.exit(0);
                 }
                 System.out.println();
@@ -72,7 +75,7 @@ public class UsuarioBatePapo extends Thread {
                 System.out.print("Responder > ");
             }
         } catch (IOException e) {
-            //Caso ocorra alguma exceção de E/S, mostra qual foi;
+            //Caso ocorra alguma exceï¿½ï¿½o de E/S, mostra qual foi;
             System.out.println("Ocorreu uma Falha... .. ." +
                 " IOException: " + e);
         }
