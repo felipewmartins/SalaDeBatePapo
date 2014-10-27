@@ -80,7 +80,7 @@ public class ServidorBatePapo extends Thread {
             MAP_Usuarios.remove(this.usuario);
             this.conexao.close();
         } catch (IOException e) {
-            System.out.println("Falha na Conexao... .. ." + " IOException: " + e);
+            System.out.println("Falha na Coexao... .. ." + " IOException: " + e);
         }
     }
     
