@@ -53,7 +53,7 @@ public class ServidorBatePapo extends Thread {
             PrintStream saida = new PrintStream(this.conexao.getOutputStream());
             this.usuario = entrada.readLine();
             if (armazenaNome(this.usuario)) {
-                saida.println("Este nome ja existe! Conecte novamente com outro Nome.");
+                saida.println("Usuario existente! Conecte novamente com outro Nome de usuário.");
                 this.conexao.close();
                 return;
             } else {
@@ -73,8 +73,8 @@ public class ServidorBatePapo extends Thread {
                 send(saida, " escreveu: ", msg);
                 msg = entrada.readLine().split(":");
             }
-            System.out.println(this.usuario + " saiu do bate-papo!");
-            String[] out = {" do bate-papo!"};
+            System.out.println(this.usuario + " saiu do sala!");
+            String[] out = {" do sala!"};
             send(saida, " saiu", out);
             remove(this.usuario);
             MAP_Usuarios.remove(this.usuario);
