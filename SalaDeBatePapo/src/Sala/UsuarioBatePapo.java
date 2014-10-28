@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class UsuarioBatePapo extends Thread {
     
-	// Controla a recep��o de mensagens do usuario
+	// Controla a recepção de mensagens do usuario
     private Socket conexao;
     // Construtor que recebe o socket do usuario
     public UsuarioBatePapo(Socket socket) {
@@ -25,10 +25,10 @@ public class UsuarioBatePapo extends Thread {
             String ip = JOptionPane.showInputDialog("Digite o ip do servidor Ex: 127.0.0.1");
             Socket socket = new Socket(ip, 5555);
             //Instancia do atributo saida, obtem os objetos que permitem;
-            //Controlar o fluxo de comunica��o;
+            //Controlar o fluxo de comunicação;
             PrintStream saida = new PrintStream(socket.getOutputStream());
             BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Digite seu nome de usu�rio: ");
+            System.out.print("Digite seu nome de usuário: ");
             String meuNome = teclado.readLine();
             //Envia o nome digitado para o servidor;
             saida.println(meuNome.toUpperCase());
@@ -53,7 +53,7 @@ public class UsuarioBatePapo extends Thread {
     public void run()
     {
         try {
-            //Recebe mensagens de outro cliente atrav�s do servidor;
+            //Recebe mensagens de outro cliente através do servidor;
             BufferedReader entrada =
                 new BufferedReader(new InputStreamReader(this.conexao.getInputStream()));
             //Cria variavel de mensagem;

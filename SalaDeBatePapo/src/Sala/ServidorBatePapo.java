@@ -53,34 +53,37 @@ public class ServidorBatePapo extends Thread {
             PrintStream saida = new PrintStream(this.conexao.getOutputStream());
             this.usuario = entrada.readLine();
             if (armazenaNome(this.usuario)) {
-                saida.println("Usuario existente! Conecte novamente com outro Nome de usuário.");
+                saida.println("Usuario existente! Conecte novamente com outro Nome de usuï¿½rio.");
                 this.conexao.close();
                 return;
             } else {
                 //Mostra o nome do usuario conectado ao servidor;
                 System.out.println(this.usuario + " : Conectado ao Servidor!");
-                //Quando o usuario se conectar recebe todos que estão conectados;
+                //Quando o usuario se conectar recebe todos que estao conectados;
                 saida.println("Conectados: " + Nomes_Usuarios.toString());
             }
             if (this.usuario == null) {
                 return;
             }
             //Adiciona os dados de saida do ususario no objeto MAP_Usuarios
-            //A chave será o nome e valor o printstream;
+            //A chave serï¿½ o nome e valor o printstream;
             MAP_Usuarios.put(this.usuario, saida);
             String[] msg = entrada.readLine().split(":");
+            FileManager fim = new FileManager();
             while (msg != null && !(msg[0].trim().equals(""))) {
                 send(saida, " escreveu: ", msg);
                 msg = entrada.readLine().split(":");
+                fim.createFile(msg);
+                
             }
             System.out.println(this.usuario + " saiu do sala!");
-            String[] out = {" do sala!"};
+            String[] out = {" da sala!"};
             send(saida, " saiu", out);
             remove(this.usuario);
             MAP_Usuarios.remove(this.usuario);
             this.conexao.close();
         } catch (IOException e) {
-            System.out.println("Falha na Coexao... .. ." + " IOException: " + e);
+            System.out.println("Falha na Conexao... .. ." + " IOException: " + e);
         }
     }
     
