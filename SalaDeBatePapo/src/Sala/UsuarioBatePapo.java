@@ -49,7 +49,7 @@ public class UsuarioBatePapo extends Thread {
             System.out.println("Falha na Conexao... .. ." + " IOException: " + e);
         }
     }
-    //Execu��o da thread;
+    //Execução da thread;
     public void run()
     {
         try {
